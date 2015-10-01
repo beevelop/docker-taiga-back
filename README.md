@@ -1,3 +1,5 @@
+[![](https://badge.imagelayers.io/beevelop/taiga-back:latest.svg)](https://imagelayers.io/?images=beevelop/taiga-back:latest 'Get your own badge on imagelayers.io')
+
 # beevelop/taiga-back (adapted from htdvisser/taiga-back)
 > [Taiga](https://taiga.io/) is a project management platform for startups and agile developers & designers who want a simple, beautiful tool that makes work truly enjoyable.
 
@@ -32,7 +34,7 @@ taigaback:
   image: beevelop/taiga-back
   hostname: taiga.example.com
   environment:
-    SECRET_KEY: examplesecretkey
+    SECRET_KEY: Un1c0rns_4r3_4w3s0m3
     EMAIL_USE_TLS: True
     EMAIL_HOST: smtp.gmail.com
     EMAIL_PORT: 587
@@ -67,6 +69,13 @@ taigafront:
 * ``API_DOMAIN`` defaults to ``"$HOSTNAME"``
 * ``FRONT_SCHEME`` defaults to ``"http"``. Use ``https`` if ``htdvisser/taiga-front-dist`` is used and SSL enabled.
 * ``FRONT_DOMAIN`` defaults to ``"$HOSTNAME"``
+
+### Database
+If you want to use an existing PostgreSQL database, you can specify the database connection with the following environment variables
+* ``DB_HOST``
+* ``DB_USER``
+* ``DB_NAME``
+* ``DB_PASS``
 
 ### Email configuration
 * ``EMAIL_USE_TLS`` defaults to ``False``
