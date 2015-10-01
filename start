@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -ea # Exit on Error and Export all vars
+
+[[ -n $DEBUG_ENTRYPOINT ]] && set -x
+
+. ./conf.env
+
+cd taiga-back/settings
+envsubst < dockerenv.py > local.py
+
+while ! nc -z $DB_HOST 5432; do
+  echo "Waiting for PostgreSQL..."
+  sleep 2
+done
+
+cd .. # back to taiga-back
+
+## Populate the database with initial basic data
+lockfile=/var/lock/taiga
+if [ ! -e $lockfile ]; then
+   trap "rm -f $lockfile; exit" INT TERM EXIT
+   touch $lockfile
+
+   python manage.py migrate --noinput
+   python manage.py loaddata initial_user
+   python manage.py loaddata initial_project_templates
+   python manage.py loaddata initial_role
+   python manage.py compilemessages
+   python manage.py collectstatic --noinput
+
+   [[ -n $SAMPLE_DATA ]] && python manage.py sample_data
+
+   # Don't remove the lockfile here to run initial DB setup only once
+   trap - INT TERM EXIT
+fi
+
+cd /usr/local/taiga
+chown -R taiga media static logs
+
+/usr/local/bin/circusd circus.ini
