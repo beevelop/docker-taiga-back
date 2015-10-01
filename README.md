@@ -60,6 +60,9 @@ taigafront:
 * ``SECRET_KEY`` defaults to ``"insecurekey"``, but you might want to change this.
 * ``PUBLIC_REGISTER_ENABLED`` defaults to ``True``
 
+* `FEEDBACK_ENABLED`: enables Feedback functionality (default: True)
+* `FEEDBACK_EMAIL`: (default *support@taiga.io*)
+
 ### URLs for static files and media files from taiga-back:
 * ``MEDIA_URL`` defaults to ``"$API_SCHEME://$HOSTNAME/media/"``
 * ``STATIC_URL`` defaults to ``"$API_SCHEME://$HOSTNAME/media/"``
