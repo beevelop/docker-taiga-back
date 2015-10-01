@@ -76,6 +76,7 @@ If you want to use an existing PostgreSQL database, you can specify the database
 * ``DB_USER``
 * ``DB_NAME``
 * ``DB_PASS``
+* ``DB_PORT`` (default: 5432)
 
 ### Email configuration
 * ``EMAIL_USE_TLS`` defaults to ``False``
