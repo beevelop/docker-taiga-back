@@ -63,6 +63,8 @@ taigafront:
 * `FEEDBACK_ENABLED`: enables Feedback functionality (default: True)
 * `FEEDBACK_EMAIL`: (default *support@taiga.io*)
 
+* `STATS_ENABLED`: enable / disable stats (default: False)
+
 ### URLs for static files and media files from taiga-back:
 * ``MEDIA_URL`` defaults to ``"$API_SCHEME://$HOSTNAME/media/"``
 * ``STATIC_URL`` defaults to ``"$API_SCHEME://$HOSTNAME/media/"``
