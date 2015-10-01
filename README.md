@@ -65,6 +65,8 @@ taigafront:
 
 * `STATS_ENABLED`: enable / disable stats (default: False)
 
+* `FRONT_SITEMAP_ENABLED`: enable / disable sitemap (default: False)
+
 ### URLs for static files and media files from taiga-back:
 * ``MEDIA_URL`` defaults to ``"$API_SCHEME://$HOSTNAME/media/"``
 * ``STATIC_URL`` defaults to ``"$API_SCHEME://$HOSTNAME/media/"``

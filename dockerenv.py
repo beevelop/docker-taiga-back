@@ -48,4 +48,12 @@ FEEDBACK_ENABLED = ${FEEDBACK_ENABLED}
 FEEDBACK_EMAIL = '${FEEDBACK_EMAIL}'
 
 # STATS MODULE
-STATS_ENABLED = False
+STATS_ENABLED = ${STATS_ENABLED}
+
+# SITEMAP
+FRONT_SITEMAP_ENABLED = ${FRONT_SITEMAP_ENABLED}
+
+# Uncomment and populate with proper connection parameters
+# for enable github login/singin.
+GITHUB_API_CLIENT_ID = "yourgithubclientid"
+GITHUB_API_CLIENT_SECRET = "yourgithubclientsecret"
