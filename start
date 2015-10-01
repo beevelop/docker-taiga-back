@@ -6,13 +6,18 @@ set -ea # Exit on Error and Export all vars
 
 . ./conf.env
 
-cd taiga-back/settings
-envsubst < dockerenv.py > local.py
-
 while ! nc -z $DB_HOST 5432; do
   echo "Waiting for PostgreSQL..."
   sleep 2
 done
+
+cd taiga-back/settings
+envsubst < dockerenv.py > local.py
+
+if [ -n $GITHUB_API_CLIENT_ID ]; then
+    echo "GITHUB_API_CLIENT_ID = '$GITHUB_API_CLIENT_ID'" >> local.py
+    echo "GITHUB_API_CLIENT_SECRET = '$GITHUB_API_CLIENT_SECRET'" >> local.py
+fi
 
 cd .. # back to taiga-back
 

@@ -67,6 +67,9 @@ taigafront:
 
 * `FRONT_SITEMAP_ENABLED`: enable / disable sitemap (default: False)
 
+* `GITHUB_API_CLIENT_ID`: enable GitHub signin/login by providing a client ID (see [register a new application](https://github.com/settings/applications/new))
+* `GITHUB_API_CLIENT_SECRET`: the respective client secret
+
 ### URLs for static files and media files from taiga-back:
 * ``MEDIA_URL`` defaults to ``"$API_SCHEME://$HOSTNAME/media/"``
 * ``STATIC_URL`` defaults to ``"$API_SCHEME://$HOSTNAME/media/"``
