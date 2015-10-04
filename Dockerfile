@@ -13,11 +13,8 @@ WORKDIR /usr/local/taiga
 
 # Install taiga-back
 RUN \
-  #mkdir -p /usr/local/taiga && \
-  #cd /usr/local/taiga && \
   useradd -d `pwd` taiga && \
-  mkdir media static logs taiga-back && \
-  touch circus.ini && \
+  mkdir media static logs taiga-back
 
   curl -sL 'https://github.com/taigaio/taiga-back/tarball/stable' | tar xz -C taiga-back --strip-components=1 && \
   cd taiga-back && \
