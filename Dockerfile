@@ -14,7 +14,7 @@ WORKDIR /usr/local/taiga
 # Install taiga-back
 RUN \
   useradd -d `pwd` taiga && \
-  mkdir media static logs taiga-back
+  mkdir media static logs taiga-back && \
 
   curl -sL 'https://github.com/taigaio/taiga-back/tarball/stable' | tar xz -C taiga-back --strip-components=1 && \
   cd taiga-back && \
