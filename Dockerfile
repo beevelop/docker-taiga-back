@@ -1,18 +1,15 @@
-FROM python:3.4
+FROM python:3.4-slim
 
 MAINTAINER Maik Hummel <m@ikhummel.com>
 
-# Install dependencies
+WORKDIR /usr/local/taiga
+
 RUN \
   apt-get update -qq && \
   apt-get install -y netcat gettext moreutils && \
   rm -rf /var/lib/apt/lists/* && \
-  pip install circus gunicorn
-
-WORKDIR /usr/local/taiga
-
-# Install taiga-back
-RUN \
+  pip install circus gunicorn && \
+  
   useradd -d `pwd` taiga && \
   mkdir media static logs taiga-back && \
 
@@ -27,6 +24,7 @@ ADD ./dockerenv.py taiga-back/settings/dockerenv.py
 ADD ./circus.ini circus.ini
 ADD ./conf.env conf.env
 ADD ./start start
+
 RUN chmod +x conf.env start
 
 VOLUME /usr/local/taiga/media
