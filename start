@@ -40,7 +40,8 @@ if [ ! -e $lockfile ]; then
    trap - INT TERM EXIT
 fi
 
-cd /usr/local/taiga
-chown -R taiga media static logs
+cd .. # and back to the roots
+
+chown -R taiga /opt
 
 /usr/local/bin/circusd circus.ini
