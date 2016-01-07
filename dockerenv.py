@@ -27,7 +27,7 @@ SITES["api"]["domain"] = '${API_DOMAIN}'
 
 SECRET_KEY = '${SECRET_KEY}'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = '${EMAIL_BACKEND}'
 EMAIL_USE_TLS = ${EMAIL_USE_TLS}
 EMAIL_HOST = '${EMAIL_HOST}'
 EMAIL_PORT = ${EMAIL_PORT}

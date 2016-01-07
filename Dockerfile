@@ -2,6 +2,8 @@ FROM python:3-slim
 
 MAINTAINER Maik Hummel <m@ikhummel.com>
 
+ENV TAIGA_VERSION 1.9.0
+
 WORKDIR /opt
 
 COPY circus.ini .
@@ -22,7 +24,8 @@ RUN buildDeps='build-essential binutils-doc autoconf flex bison libjpeg-dev libf
     mkdir -p media static logs taiga-back taiga && \
     chmod a+x conf.env start && \
 
-    curl -sL 'https://github.com/taigaio/taiga-back/tarball/stable' | tar xz -C taiga-back --strip-components=1 && \
+    echo "https://codeload.github.com/taigaio/taiga-back/tar.gz/${TAIGA_VERSION}" && \
+    curl -vsL "https://api.github.com/repos/taigaio/taiga-back/tarball/${TAIGA_VERSION}" | tar xz -C taiga-back --strip-components=1 && \
     cd taiga-back && \
     pip install -r requirements.txt && \
 
