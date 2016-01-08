@@ -4,7 +4,7 @@ MAINTAINER Maik Hummel <m@ikhummel.com>
 
 ENV TAIGA_VERSION 1.9.1
 
-WORKDIR /opt
+WORKDIR /opt/
 
 COPY circus.ini .
 COPY conf.env .
