@@ -5,8 +5,6 @@ services:
 
 script:
   - docker build -t taiga-back .
-  - docker run -d taiga-back
-  - docker run --name postgres -e POSTGRES_PASSWORD=Un1c0rn -d postgres
+  - docker run --name postgres -e POSTGRES_USER=taiga -e POSTGRES_PASSWORD=Un1c0rn -e POSTGRES_NAME=taiga -d postgres
   - docker run --name taiback --link postgres taiga-back
   - docker exec taiback /bin/bash -c "apt-get update && apt-get install curl && curl localhost:8000"
-  
