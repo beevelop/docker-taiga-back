@@ -24,8 +24,7 @@ RUN buildDeps='build-essential binutils-doc autoconf flex bison libjpeg-dev libf
     mkdir -p media static logs taiga-back taiga && \
     chmod a+x conf.env start && \
 
-    echo "https://codeload.github.com/taigaio/taiga-back/tar.gz/${TAIGA_VERSION}" && \
-    curl -vsL "https://api.github.com/repos/taigaio/taiga-back/tarball/${TAIGA_VERSION}" | tar xz -C taiga-back --strip-components=1 && \
+    curl -sL "https://api.github.com/repos/taigaio/taiga-back/tarball/${TAIGA_VERSION}" | tar xz -C taiga-back --strip-components=1 && \
     cd taiga-back && \
     pip install -r requirements.txt && \
 
