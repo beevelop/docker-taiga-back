@@ -17,8 +17,7 @@ RUN buildDeps='build-essential binutils-doc autoconf flex bison libjpeg-dev libf
     apt-get -qq install -y netcat gettext moreutils libpq5 libxslt1-dev libxml2-dev libjpeg62 libzmq3-dev --no-install-recommends && \
     apt-mark manual libxslt1-dev && \
     
-    # fix temporarily to commit due to https://github.com/circus-tent/circus/issues/939
-    pip install git+git://github.com/circus-tent/circus.git@0a62934167563fe45efa7a073d046be117469540 && \
+    pip install circus==0.13 && \
     
     useradd -d `pwd` taiga && \
     mkdir -p media static logs taiga-back taiga && \
