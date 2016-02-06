@@ -6,9 +6,7 @@ ENV TAIGA_VERSION 1.10.0
 
 WORKDIR /opt/
 
-COPY circus.ini ./
-COPY conf.env ./
-COPY start ./
+COPY circus.ini conf.env start ./
 
 RUN buildDeps='build-essential binutils-doc autoconf flex bison libjpeg-dev libfreetype6-dev zlib1g-dev libgdbm-dev libncurses5-dev automake libtool libffi-dev curl git libpq-dev'; \
     set -x && \
