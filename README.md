@@ -1,9 +1,10 @@
-[![Travis](https://img.shields.io/travis/beevelop/docker-taiga-back.svg?style=flat-square)](https://travis-ci.org/beevelop/docker-taiga-back)
+[![Travis](https://img.shields.io/travis/beevelop/docker-taiga-back/alpine.svg?style=flat-square)](https://travis-ci.org/beevelop/docker-taiga-back)
 [![Docker Pulls](https://img.shields.io/docker/pulls/beevelop/taiga-back.svg?style=flat-square)](https://links.beevelop.com/d-taiga-back)
-[![ImageLayer](https://badge.imagelayers.io/beevelop/taiga-back:latest.svg)](https://imagelayers.io/?images=beevelop/taiga-back:latest)
+[![ImageLayer](https://badge.imagelayers.io/beevelop/taiga-back:alpine.svg)](https://imagelayers.io/?images=beevelop/taiga-back:alpine)
 [![Beevelop](https://links.beevelop.com/honey-badge)](https://beevelop.com)
 
-# beevelop/taiga-back (adapted from htdvisser/taiga-back)
+# Taiga Backend for Docker :whale:
+
 > [Taiga](https://taiga.io/) is a project management platform for startups and agile developers & designers who want a simple, beautiful tool that makes work truly enjoyable.
 
 This Docker image can be used for running the Taiga backend. It works together with the [beevelop/taiga-front](https://registry.hub.docker.com/u/beevelop/taiga-front/) image.
