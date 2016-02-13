@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3-alpine
 
 MAINTAINER Maik Hummel <m@ikhummel.com>
 
@@ -8,28 +8,22 @@ WORKDIR /opt/
 
 COPY circus.ini conf.env start ./
 
-RUN buildDeps='build-essential binutils-doc autoconf flex bison libjpeg-dev libfreetype6-dev zlib1g-dev libgdbm-dev libncurses5-dev automake libtool libffi-dev curl git libpq-dev'; \
-    set -x && \
-    apt-get -qq update && \
-    apt-get -qq install -y $buildDeps && \
-    apt-get -qq install -y netcat gettext moreutils libpq5 libxslt1-dev libxml2-dev libjpeg62 libzmq3-dev --no-install-recommends && \
-    apt-mark manual libxslt1-dev && \
+RUN buildDeps='binutils-doc autoconf flex bison libjpeg freetype-dev zlib-dev gdbm-dev ncurses5 automake libtool libffi-dev curl git libpq gcc musl-dev g++ linux-headers postgresql-dev'; \
+    apk add --no-cache $buildDeps
+
+RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+    apk add --no-cache netcat-openbsd gettext moreutils@testing libpq libxslt-dev libxml2-dev libjpeg libzmq tar && \
     
     pip install circus==0.13 && \
     
-    useradd -d `pwd` taiga && \
     mkdir -p media static logs taiga-back taiga && \
-    chmod a+x conf.env start && \
+    chmod a+x conf.env start
 
-    curl -sL "https://api.github.com/repos/taigaio/taiga-back/tarball/${TAIGA_VERSION}" | tar xz -C taiga-back --strip-components=1 && \
+RUN curl -sL "https://api.github.com/repos/taigaio/taiga-back/tarball/${TAIGA_VERSION}" | tar xz -C taiga-back --strip-components=1 && \
     cd taiga-back && \
-    pip install -r requirements.txt && \
+    pip install -r requirements.txt
 
-    # clean up
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    apt-get purge -y $buildDeps && \
-    apt-get autoremove -y && \
-    apt-get clean
+   # apk del $buildDeps
 
 COPY dockerenv.py taiga-back/settings/dockerenv.py
 
