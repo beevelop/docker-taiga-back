@@ -5,6 +5,7 @@ services:
 
 script:
   - docker build -t taiga-back .
-  - docker run --name postgres -e POSTGRES_USER=taiga -e POSTGRES_PASSWORD=Un1c0rn -e POSTGRES_NAME=taiga -d postgres
+  - docker run --name postgres -d kiasaki/alpine-postgres
   - docker run --name taiback --link postgres -d taiga-back
-  - sleep 42 && docker exec taiback /bin/bash -c "apt-get update && apt-get install -y curl && curl localhost:8000"
+  - sleep 22 && docker exec taiback /bin/bash -c "apk add --no-cache curl && curl -f localhost:8000"
+  - docker logs taiback
