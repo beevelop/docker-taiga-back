@@ -7,6 +7,6 @@ script:
   - docker build -t taiga-back .
   - docker run --name postgres -d kiasaki/alpine-postgres
   - docker run --name taiback --link postgres -e SAMPLE_DATA=true -d taiga-back
-  - echo "Waiting for Taiga Backend to get up and running" && sleep 60
+  - echo "Waiting for Taiga Backend to get up and running" && sleep 120
   - docker exec taiback /bin/sh -c "curl -f localhost:8000/api/v1/projects"
   - docker logs taiback
