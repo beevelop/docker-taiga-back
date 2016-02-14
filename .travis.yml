@@ -6,6 +6,7 @@ services:
 script:
   - docker build -t taiga-back .
   - docker run --name postgres -d kiasaki/alpine-postgres
-  - docker run --name taiback --link postgres -d taiga-back
-  - sleep 42 && docker exec taiback /bin/bash -c "apk add --no-cache curl && curl -f localhost:8000"
+  - docker run --name taiback --link postgres -e SAMPLE_DATA=true -d taiga-back
+  - echo "Waiting for Taiga Backend to get up and running" && sleep 60
+  - docker exec taiback /bin/sh -c "curl -f localhost:8000/api/v1/projects"
   - docker logs taiback
