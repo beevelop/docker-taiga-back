@@ -7,5 +7,5 @@ script:
   - docker build -t taiga-back .
   - docker run --name postgres -d kiasaki/alpine-postgres
   - docker run --name taiback --link postgres -d taiga-back
-  - sleep 22 && docker exec taiback /bin/bash -c "apk add --no-cache curl && curl -f localhost:8000"
+  - sleep 42 && docker exec taiback /bin/bash -c "apk add --no-cache curl && curl -f localhost:8000"
   - docker logs taiback
