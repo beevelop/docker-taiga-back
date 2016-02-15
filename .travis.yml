@@ -10,5 +10,5 @@ script:
 
   - sleep 420
 
-  - docker exec taiback /bin/sh -c "curl -f localhost:8000/api/v1/projects"
+  - docker exec taiback /bin/sh -c "apk add --no-cache curl && curl -f localhost:8000/api/v1/projects"
   - docker logs taiback
