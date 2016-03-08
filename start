@@ -23,26 +23,20 @@ fi
 
 cd .. # back to taiga-back
 
-## Populate the database with initial basic data
-lockfile=/var/lock/taiga
-if [ ! -e "$lockfile" ]; then
-  trap "rm -f $lockfile; exit" INT TERM EXIT
-  touch $lockfile
-
-  python manage.py migrate --noinput
-  python manage.py loaddata initial_user
-  python manage.py loaddata initial_project_templates
+# Allow migration to fail due to already initialized DB
+{
+  python manage.py migrate --noinput &&
+  python manage.py loaddata initial_user &&
+  python manage.py loaddata initial_project_templates &&
   python manage.py loaddata initial_role
-  python manage.py compilemessages
-  python manage.py collectstatic --noinput
 
   if [ -n "$SAMPLE_DATA" ]; then
     python manage.py sample_data
   fi
+}
 
-  # Don't remove the lockfile here to run initial DB setup only once
-  trap - INT TERM EXIT
-fi
+python manage.py compilemessages
+python manage.py collectstatic --noinput
 
 cd .. # and back to the roots
 
