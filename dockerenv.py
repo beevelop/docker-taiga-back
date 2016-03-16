@@ -13,10 +13,10 @@ DATABASES = {
 
 HOST = 'http://${HOSTNAME}/'
 
-MEDIA_ROOT = '/opt/media'
+MEDIA_ROOT = '/opt/taiga/media'
 MEDIA_URL = '${MEDIA_URL}'
 
-STATIC_ROOT = '/opt/static'
+STATIC_ROOT = '/opt/taiga/static'
 STATIC_URL = '${STATIC_URL}'
 ADMIN_MEDIA_PREFIX = '${STATIC_URL}admin/'
 

@@ -4,9 +4,9 @@ MAINTAINER Maik Hummel <m@ikhummel.com>
 
 ENV TAIGA_VERSION 1.10.0
 
-WORKDIR /opt/
+WORKDIR /opt/taiga
 
-COPY circus.ini conf.env start ./
+COPY circus.ini conf.env start /opt/
 
 RUN buildDeps='binutils-doc autoconf flex bison libjpeg freetype-dev zlib-dev gdbm-dev ncurses5 automake libtool libffi-dev curl git gcc musl-dev g++ linux-headers postgresql-dev' && \
     apk add --no-cache $buildDeps && \
@@ -16,8 +16,8 @@ RUN buildDeps='binutils-doc autoconf flex bison libjpeg freetype-dev zlib-dev gd
     
     pip install circus==0.13 && \
     
-    mkdir -p media static logs taiga-back taiga && \
-    chmod a+x conf.env start && \
+    mkdir -p media static logs taiga-back && \
+    chmod a+x /opt/conf.env /opt/start && \
 
     curl -sL "https://api.github.com/repos/taigaio/taiga-back/tarball/${TAIGA_VERSION}" | tar xz -C taiga-back --strip-components=1 && \
     cd taiga-back && \
@@ -27,8 +27,8 @@ RUN buildDeps='binutils-doc autoconf flex bison libjpeg freetype-dev zlib-dev gd
 
 COPY dockerenv.py taiga-back/settings/dockerenv.py
 
-VOLUME /opt/media /opt/static /opt/logs
+VOLUME /opt/taiga/media /opt/taiga/static /opt/taiga/logs
 
 EXPOSE 8000
 
-CMD ./start
+CMD /opt/start
