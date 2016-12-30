@@ -14,7 +14,7 @@ RUN buildDeps='binutils-doc autoconf flex bison libjpeg freetype-dev zlib-dev gd
     echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk add --no-cache netcat-openbsd gettext moreutils@testing libpq libxslt-dev libxml2-dev libjpeg libzmq tar && \
     
-    pip install circus==0.13 && \
+    pip install circus==0.14 && \
     
     mkdir -p media static logs taiga-back && \
     chmod a+x /opt/conf.env /opt/start && \
